@@ -516,7 +516,6 @@ local function MissionList_Update_More(self, caller, frame_prefix, follower_type
 
    local missions = self.availableMissions
    local offset = HybridScrollFrame_GetOffset(scrollFrame)
-
    local filtered_followers = GetFilteredFollowers(follower_type)
    local more_missions_to_cache
    local garrison_resources = GetCurrencyInfo(currency).quantity
@@ -635,7 +634,13 @@ local function GarrisonFollowerList_Update_More(self)
    local followerFrame = self:GetParent()
    local followers = followerFrame.FollowerList.followers
    local followersList = followerFrame.FollowerList.followersList
-   local numFollowers = #followersList
+   if followerList then
+      local numFollowers = #followersList
+      -- Existing logic using followersList and numFollowers
+  else
+      print("Error: followersList is nil")
+      -- Handle the error or initialize followersList as needed
+  end
    local scrollFrame = followerFrame.FollowerList.listScroll
    local offset = HybridScrollFrame_GetOffset(scrollFrame)
    local buttons = scrollFrame.buttons
