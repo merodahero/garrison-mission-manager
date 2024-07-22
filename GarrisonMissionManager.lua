@@ -420,7 +420,7 @@ local function GarrisonFollowerList_Update_More(self)
 
    local followerFrame = self:GetParent()
    local followers = followerFrame.FollowerList.followers
-   local followersList = followerFrame.FollowerList.followersList
+   local followersList = followerFrame.FollowerList.followersList or {}
    local numFollowers = #followersList
    local scrollFrame = followerFrame.FollowerList.listScroll
    local offset = HybridScrollFrame_GetOffset(scrollFrame)
