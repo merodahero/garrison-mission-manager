@@ -651,9 +651,12 @@ local function GarrisonFollowerList_Update_More(self)
    local followersList = followerFrame.FollowerList.followersList
    if followerList then
       local numFollowers = #followersList
+         print(#followersList)
+      
+      
       -- Existing logic using followersList and numFollowers
   else
-      print("Error @ 641 : followersList is nil")
+      print("Error @ 656 : followersList is nil")
       -- Handle the error or initialize followersList as needed
   end
    local scrollFrame = followerFrame.FollowerList.listScroll
