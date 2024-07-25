@@ -261,12 +261,21 @@ local function AssignAllWorkers_TooltipSetText()
 end
 
 local function AssignAllWorkers_TooltipShow(self)
+   if not self then
+      print("ErrorGB265: self is nil")
+      return
+  end
+
    GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
    AssignAllWorkers_TooltipSetText()
    GameTooltip:Show()
 end
 
 local function RemoveAllWorkers_TooltipShow(self)
+   if not self then
+      print("ErrorGB276: self is nil")
+      return
+  end
    GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
    RemoveAllWorkers_TooltipSetText(GameTooltip, true)
    GameTooltip:Show()

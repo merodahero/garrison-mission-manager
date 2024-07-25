@@ -296,6 +296,7 @@ local function GetFilteredFollowers(type_id)
                if status and status ~= GARRISON_FOLLOWER_IN_PARTY then
                   follower.is_busy_for_mission = true
                else
+---@diagnostic disable-next-line: cast-local-type
                   if xp_to_level ~= 0 then all_maxed = nil end
                   free = free + 1
                   free_non_troop = free_non_troop or not troop
@@ -369,6 +370,10 @@ addon_env.GetFilteredFollowers = GetFilteredFollowers
 addon_env.HideGameTooltip = GameTooltip_Hide or function() return GameTooltip:Hide() end
 addon_env.OnShowEmulateDisabled = function(self) self:GetScript("OnDisable")(self) end
 addon_env.OnEnterShowGameTooltip = function(self) GameTooltip:SetOwner(self, "ANCHOR_RIGHT") GameTooltip:SetText(self.tooltip, nil, nil, nil, nil, true) end
+if not self then
+   print("ErrorGMM374: self is nil")
+   return
+end
 
 local info_ignore_toggle = {
    notCheckable = true,
@@ -394,6 +399,10 @@ local info_cancel = {
 }
 
 hooksecurefunc(GarrisonFollowerOptionDropDown, "initialize", function(self)
+   if not self then
+      print("ErrorGMM403: self is nil")
+      return
+   end
    local followerID = self.followerID
    if not followerID then return end
    local follower = C_Garrison.GetFollowerInfo(followerID)
@@ -416,6 +425,11 @@ end)
 local function GarrisonFollowerList_Update_More(self)
    -- Somehow Blizzard UI insists on updating hidden frames AND explicitly updates them OnShow.
    --  Following suit is just a waste of CPU, so we'll update only when frame is actually visible.
+   if not self then
+      print("ErrorGMM429: self is nil")
+      return
+   end
+
    if not self:IsVisible() then return end
 
    local followerFrame = self:GetParent()

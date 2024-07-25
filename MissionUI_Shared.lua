@@ -203,6 +203,11 @@ local function SetTeamButtonTooltip(button)
 end
 
 local function MissionPage_PartyButtonOnClick(self)
+   if not self then
+      print("ErrorMUI_shared207: self is nil")
+      return
+   end
+
    local method_base = self.method_base
    local follower_frames = self.follower_frames
 
@@ -227,6 +232,11 @@ local function MissionPage_PartyButtonOnClick(self)
 end
 
 local function MissionList_PartyButtonOnClick(self)
+   if not self then
+      print("ErrorMUI_shared236: self is nil")
+      return
+   end
+
    if addon_env.RegisterManualInterraction then addon_env.RegisterManualInterraction() end
    local pending_click
    local follower_type = self.follower_type
@@ -627,6 +637,11 @@ end
 hooksecurefunc("GarrisonMissionPortrait_SetFollowerPortrait", GarrisonMissionFrame_SetFollowerPortrait_More)
 
 local function GarrisonFollowerList_Update_More(self)
+   if not self then
+      print("ErrorMUI_shared641: self is nil")
+      return
+   end
+
    -- Somehow Blizzard UI insists on updating hidden frames AND explicitly updates them OnShow.
    --  Following suit is just a waste of CPU, so we'll update only when frame is actually visible.
    if not self:IsVisible() then return end

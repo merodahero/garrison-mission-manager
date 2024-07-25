@@ -14,6 +14,11 @@ local type = type
 local Widget = addon_env.Widget
 
 local function SetGameTooltipToItem(self)
+   if not self then
+      print("ErrorMUI_shared_upgrade18: self is nil")
+      return
+   end
+
    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
    if (self.itemID) then
       GameTooltip:SetItemByID(self.itemID)
@@ -170,8 +175,13 @@ end
 local function UpgradeParent_OnEvent(self, event)
    if event == "BAG_UPDATE_DELAYED" or event == "PLAYER_REGEN_ENABLED" then
       return UpdateUpgradeItemStates(self)
-   else
+            else
       self:Hide()
+      if not self then
+         print("ErrorMUI_shared_upgrade181: self is nil")
+         return
+      end
+
    end
 end
 
@@ -180,6 +190,11 @@ local function UpgradeItems_InitEvents(base_frame, upgrade_buttons_parent)
    local FollowerTab = base_frame.FollowerTab
 
    hooksecurefunc(FollowerList, "ShowFollower", function(self)
+      if not self then
+         print("ErrorMUI_shared_upgrade194: self is nil")
+         return
+      end
+
       upgrade_buttons_parent:Hide()
       local followerID = FollowerTab.followerID
       if not followerID then return end
@@ -190,6 +205,11 @@ local function UpgradeItems_InitEvents(base_frame, upgrade_buttons_parent)
 
    upgrade_buttons_parent:HookScript("OnShow", function(self)
       UpdateUpgradeItemStates(self)
+      if not self then
+         print("ErrorMUI_shared_upgrade209: self is nil")
+         return
+      end
+
       upgrade_buttons_parent:RegisterEvent("BAG_UPDATE_DELAYED")
       upgrade_buttons_parent:RegisterEvent("PLAYER_REGEN_ENABLED")
       upgrade_buttons_parent:RegisterEvent("PLAYER_REGEN_DISABLED")

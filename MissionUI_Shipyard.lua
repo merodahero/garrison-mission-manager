@@ -31,6 +31,10 @@ local UpdateMissionListButton = addon_env.UpdateMissionListButton
 local MissionPage = GarrisonShipyardFrame.MissionTab.MissionPage
 
 local function ShipyardMissionList_PartyButtonOnClick(self)
+   if not self then
+      print("ErrorMUI_shipyard 35: self is nil")
+      return
+   end
    if addon_env.RegisterManualInterraction then addon_env.RegisterManualInterraction() end
    addon_env.mission_page_pending_click = "ShipyardMissionPage1"
    return self:GetParent():Click()
