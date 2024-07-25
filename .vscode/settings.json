@@ -1,0 +1,16 @@
+{
+    "Lua.diagnostics.globals": [
+        "LoadAddOn",
+        "LibStub",
+        "UnitFactionGroup",
+        "C_Garrison",
+        "Enum",
+        "wipe",
+        "C_Timer",
+        "CreateFrame"
+    ],
+    "Lua.diagnostics.disable": [
+        "undefined-global",
+        "lowercase-global"
+    ]
+}
